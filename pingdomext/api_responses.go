@@ -22,14 +22,19 @@ type integrationJSONResponse struct {
 
 // IntegrationGetResponse represents the JSON response for a integration from the Pingdom API.
 type IntegrationGetResponse struct {
-	NumberOfConnectedChecks int               `json:"number_of_connected_checks"`
-	ID                      int               `json:"id"`
-	Name                    string            `json:"name"`
-	Description             string            `json:"description"`
-	ProviderID              int               `json:"provider_id"`
-	ActivatedAt             int               `json:"activated_at"`
-	CreatedAt               int               `json:"created_at"`
-	UserData                map[string]string `json:"user_data"`
+	NumberOfConnectedChecks int                  `json:"number_of_connected_checks"`
+	ID                      int                  `json:"id"`
+	Name                    string               `json:"name"`
+	Description             string               `json:"description"`
+	ProviderID              int                  `json:"provider_id"`
+	ActivatedAt             int                  `json:"activated_at"`
+	CreatedAt               int                  `json:"created_at"`
+	UserData                *IntegrationUserData `json:"user_data"`
+}
+
+type IntegrationUserData struct {
+	Name string `json:"name"`
+	Url  string `json:"url"`
 }
 
 // IntegrationStatus represents a general response from the Pingdom integration API.
