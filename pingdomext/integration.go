@@ -20,7 +20,7 @@ type Integration interface {
 
 // List returns the response holding a list of Integration.
 func (cs *IntegrationService) List() ([]IntegrationGetResponse, error) {
-	req, err := cs.client.NewRequest("GET", "/data/v3/integration", nil)
+	req, err := cs.client.NewRequest("GET", "/integrations", nil)
 	if err != nil {
 		return nil, err
 	}
@@ -38,10 +38,10 @@ func (cs *IntegrationService) List() ([]IntegrationGetResponse, error) {
 	bodyBytes, _ := ioutil.ReadAll(resp.Body)
 	bodyString := string(bodyBytes)
 
-	m := &listIntegrationJSONResponse{}
+	var m []IntegrationGetResponse
 	err = json.Unmarshal([]byte(bodyString), &m)
 
-	return m.Integrations, err
+	return m, err
 }
 
 // Read returns a Integration for a given ID.
